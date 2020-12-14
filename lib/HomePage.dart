@@ -21,8 +21,12 @@ class _HomePageState extends State<HomePage> {
   void _showModal(BuildContext context) {
     showModalBottomSheet<void>(
         context: context,
+        elevation: 20,
+        isScrollControlled: true,
         builder: (BuildContext context) {
-          return FiltersBottom();
+          return Container(
+              height: MediaQuery.of(context).size.height * 0.75,
+              child: FiltersBottom());
         });
   }
 
@@ -150,6 +154,26 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.w700, fontSize: 17)),
             // threelottowinn(),
             SvgPicture.asset("assets/Untitled-1-17.svg"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                RaisedButton(
+                  padding: EdgeInsets.only(left: 50, right: 50),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  onPressed: () {},
+                  color: Color.fromRGBO(176, 8, 115, 1),
+                  child: Text("Spin",
+                      style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          color: Color.fromRGBO(255, 246, 65, 1))),
+                ),
+                Container()
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
             ListTile(
                 onTap: () {
                   Navigator.push(context,
@@ -197,7 +221,7 @@ class Curated extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(8),
         margin: EdgeInsets.all(6),
-        width: 160,
+        width: 140,
         height: 240,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -206,7 +230,7 @@ class Curated extends StatelessWidget {
             Text(name,
                 style: GoogleFonts.poppins(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 13,
                     fontWeight: FontWeight.w600)),
             Text(
               sub,
@@ -239,7 +263,7 @@ class _FiltersBottomState extends State<FiltersBottom> {
   List filters = [
     {
       "name": "Sort by",
-      "arr": ["popularity", "Rating", "Cost: High to Low"],
+      "arr": ["Popularity", "Rating", "Cost: High to Low"],
       "selected": true
     },
     {
@@ -252,46 +276,113 @@ class _FiltersBottomState extends State<FiltersBottom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leadingWidth: 5,
+        title: Text("Sort and Filters",
+            style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w500, color: Colors.black)),
         backgroundColor: Colors.white,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(children: [
-              for (int i = 0; i < filters.length; i++)
-                Container(
-                  padding: EdgeInsets.all(7),
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  decoration: BoxDecoration(
-                      color: Color.fromRGBO(112, 112, 112, 0.1),
-                      border: Border(
-                          bottom: BorderSide(color: Colors.grey),
-                          right: BorderSide(color: Colors.grey),
-                          left: BorderSide(
-                              width: selcted == i ? 10 : 1,
-                              color: selcted == i
-                                  ? Color.fromRGBO(212, 54, 47, 1)
-                                  : Colors.grey))),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      filters[i]["name"],
-                      style: GoogleFonts.poppins(fontSize: 17),
+        child: Container(
+          child: Column(
+            children: [
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      decoration: BoxDecoration(
+                          border: Border(
+                        right: BorderSide(
+                            color: Color.fromRGBO(112, 112, 112, 0.3)),
+                      )),
+                      child: Column(children: [
+                        for (int i = 0; i < filters.length; i++)
+                          GestureDetector(
+                            onTap: () {
+                              selcted = i;
+                              setState(() {});
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(7),
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(245, 245, 245, 1),
+                                  border: Border(
+                                      left: BorderSide(
+                                          width: selcted == i ? 7 : 1,
+                                          color: selcted == i
+                                              ? Color.fromRGBO(212, 54, 47, 1)
+                                              : Colors.grey))),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  filters[i]["name"],
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 16.5,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
+                          )
+                      ]),
                     ),
-                  ),
-                )
-            ]),
-            Container(
-                width: MediaQuery.of(context).size.width * 0.6,
-                child: Radio(
-                  value: "a",
-                  groupValue: 1,
-                  onChanged: (e) {},
-                ))
-          ],
+                    Container(
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        child: Column(
+                          children: [
+                            for (int i = 0;
+                                i < filters[selcted]["arr"].length;
+                                i++)
+                              Row(
+                                children: [
+                                  Radio(
+                                    value: "a",
+                                    groupValue: 1,
+                                    onChanged: (e) {},
+                                  ),
+                                  Text(
+                                    filters[selcted]["arr"][i],
+                                    style: GoogleFonts.poppins(),
+                                  )
+                                ],
+                              ),
+                          ],
+                        ))
+                  ],
+                ),
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      "Clear All",
+                      style: GoogleFonts.poppins(fontSize: 15),
+                    ),
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      onPressed: () {},
+                      child: Text(
+                        "Apply",
+                        style: GoogleFonts.poppins(
+                            color: Colors.white, fontSize: 15),
+                      ),
+                      color: Color.fromRGBO(212, 54, 47, 1),
+                    )
+                  ],
+                ),
+                height: 50,
+                width: MediaQuery.of(context).size.width,
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.black26)),
+              ),
+            ],
+          ),
         ),
       ),
     );

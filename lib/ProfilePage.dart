@@ -2,18 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kinderedecommerce/login_page.dart';
 
+import 'db/DB.dart';
+
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  bool isSignIn = DB.box.get(DB.isSignIn) ?? false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
+        leading: Icon(
+          Icons.arrow_back,
+          color: Colors.black,
+        ),
+        elevation: 0.4,
       ),
       body: Container(
         color: Colors.white,
@@ -28,14 +37,16 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               Container(
-                height: 100,
-                width: 100,
+                height: 88,
+                width: 90,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(60),
+                  borderRadius: BorderRadius.circular(80),
                   child: Image.network(
-                    "https://images.assettype.com/swarajya%2F2019-05%2F90984747-b2f3-4bd1-972b-08ce88fa4e2c%2Ffoodpanda.jpg?rect=0%2C4%2C278%2C156&w=640&q=75&auto=format%2Ccompress",
-                    height: 120,
-                    width: 120,
+                    isSignIn == false
+                        ? "https://www.searchpng.com/wp-content/uploads/2019/02/Men-Profile-Image-715x657.png"
+                        : "https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70",
+                    height: 100,
+                    width: 100,
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -47,25 +58,28 @@ class _ProfilePageState extends State<ProfilePage> {
                     height: 10,
                   ),
                   Text(
-                    "John Doe",
+                    isSignIn == false ? "Guest" : "John Doe",
                     style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w500, fontSize: 21),
+                        fontWeight: FontWeight.w400, fontSize: 17),
                   ),
                   Text(
-                    "eli_johnson_12@gmail.com",
-                    style: GoogleFonts.poppins(),
+                    isSignIn == false
+                        ? "guest12@email.com"
+                        : "eli_johnson_12@gmail.com",
+                    style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w300, fontSize: 14),
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 6,
                   ),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: RaisedButton(
                       onPressed: () {},
                       child: Text(
-                        "Level 11",
+                        isSignIn == false ? "Guest" : "Level 11",
                         style: GoogleFonts.poppins(
-                            color: Colors.white, fontSize: 16),
+                            color: Colors.white, fontSize: 15),
                       ),
                       color: Color(0xffF03731),
                     ),
@@ -99,7 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Text("Addresses",
                         style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w400, fontSize: 15)),
+                            fontWeight: FontWeight.w400, fontSize: 14)),
                   ]),
                 ),
                 Container(
@@ -121,7 +135,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Text("Payments",
                         style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w400, fontSize: 15)),
+                            fontWeight: FontWeight.w400, fontSize: 14)),
                   ]),
                 ),
                 Container(
@@ -145,7 +159,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Text("Orders",
                         style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w400, fontSize: 15)),
+                            fontWeight: FontWeight.w400, fontSize: 14)),
                   ]),
                 )
               ],
@@ -172,7 +186,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => LoginPage()));
                 },
-                title: Text("Logout",
+                title: Text(isSignIn == false ? "Login" : "Logout",
                     style: GoogleFonts.poppins(
                         color: Color.fromRGBO(240, 55, 49, 1),
                         fontSize: 15,

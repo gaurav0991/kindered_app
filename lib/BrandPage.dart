@@ -22,7 +22,7 @@ class _BrandPageState extends State<BrandPage> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(Icons.chevron_left)),
+            child: Icon(Icons.arrow_back)),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -33,27 +33,33 @@ class _BrandPageState extends State<BrandPage> {
               height: MediaQuery.of(context).size.height * 0.337,
               child: Stack(
                 children: [
-                  Image.asset(
-                    "assets/shoes.png",
+                  Image.network(
+                    "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500",
                     fit: BoxFit.fill,
                     height: MediaQuery.of(context).size.height * 0.32,
                     width: MediaQuery.of(context).size.width,
                   ),
                   Positioned(
-                      left: 20,
-                      top: MediaQuery.of(context).size.height * 0.20,
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.137,
-                        width: MediaQuery.of(context).size.width * 0.24,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.red),
-                            borderRadius: BorderRadius.circular(100),
-                            image: DecorationImage(
-                                scale: 1,
-                                image: AssetImage("assets/balance.png"),
-                                fit: BoxFit.scaleDown)),
-                      )),
+                    left: 20,
+                    top: MediaQuery.of(context).size.height * 0.20,
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.red),
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Image.asset(
+                          "assets/balance.png",
+                          height: 20,
+                          width: 20,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -77,7 +83,7 @@ class _BrandPageState extends State<BrandPage> {
                       ),
                       Text("Close Gold",
                           style: GoogleFonts.poppins(
-                              fontSize: 19, fontWeight: FontWeight.w500)),
+                              fontSize: 18, fontWeight: FontWeight.w500)),
                     ],
                   ),
                 ),
@@ -89,7 +95,7 @@ class _BrandPageState extends State<BrandPage> {
                       Icon(
                         Icons.stars_sharp,
                         color: Colors.black,
-                        size: 20,
+                        size: 18,
                       ),
                     SizedBox(
                       width: 4,
@@ -97,7 +103,7 @@ class _BrandPageState extends State<BrandPage> {
                     Text("4.1",
                         style: GoogleFonts.poppins(
                             height: 1.2,
-                            fontSize: 18,
+                            fontSize: 17,
                             fontWeight: FontWeight.w600))
                   ]),
                 ),
@@ -110,14 +116,14 @@ class _BrandPageState extends State<BrandPage> {
                 children: [
                   Text(
                     "128 reviews",
-                    style: GoogleFonts.poppins(fontSize: 12.5),
+                    style: GoogleFonts.poppins(fontSize: 11.5),
                   ),
                   SizedBox(
                     width: 12,
                   ),
                   Text(
                     "View Photos",
-                    style: GoogleFonts.poppins(fontSize: 12.5),
+                    style: GoogleFonts.poppins(fontSize: 11.5),
                   )
                 ],
               ),
@@ -130,28 +136,28 @@ class _BrandPageState extends State<BrandPage> {
               child: Text("New Balance",
                   textAlign: TextAlign.start,
                   style: GoogleFonts.poppins(
-                      fontSize: 21, fontWeight: FontWeight.w500)),
+                      fontSize: 19, fontWeight: FontWeight.w500)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15),
               child: Text("Casual Wear - Men,Women",
                   textAlign: TextAlign.start,
                   style: GoogleFonts.poppins(
-                      fontSize: 17, fontWeight: FontWeight.w300)),
+                      fontSize: 15, fontWeight: FontWeight.w300)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Text("Shoes,Clothing",
                   textAlign: TextAlign.start,
                   style: GoogleFonts.poppins(
-                      fontSize: 16, fontWeight: FontWeight.w300)),
+                      fontSize: 15, fontWeight: FontWeight.w300)),
             ),
             Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text("All Pincode serviceable",
                     textAlign: TextAlign.start,
                     style: GoogleFonts.poppins(
-                        fontSize: 13, fontWeight: FontWeight.w300))),
+                        fontSize: 12.2, fontWeight: FontWeight.w300))),
             SizedBox(
               height: 5,
             ),
@@ -199,7 +205,7 @@ class _BrandPageState extends State<BrandPage> {
               color: Colors.black45,
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.3,
+              height: MediaQuery.of(context).size.height * 0.26,
               padding: EdgeInsets.all(7),
               child: GridView.count(
                   crossAxisCount: 2,
@@ -216,7 +222,7 @@ class _BrandPageState extends State<BrandPage> {
                   ].map((url) {
                     return GridTile(
                         child: Container(
-                            height: MediaQuery.of(context).size.height * 0.10,
+                            height: MediaQuery.of(context).size.height * 0.09,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(26)),
                             child: Card(
@@ -224,36 +230,63 @@ class _BrandPageState extends State<BrandPage> {
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 elevation: 6,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
+                                child: ListTile(
+                                    subtitle: Text(
+                                      "+50 xp",
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    trailing: Icon(
                                       url["icon"],
                                       color: Color.fromRGBO(41, 41, 41, 1),
                                     ),
-                                    Text(
+                                    title: Text(
                                       url["name"],
                                       style: GoogleFonts.poppins(),
-                                    )
-                                  ],
-                                ))));
+                                    )))));
                   }).toList()),
             ),
-            new Divider(
-              color: Colors.black45,
-            ),
-            ListTile(
-              trailing: Icon(Icons.arrow_right_alt_sharp, color: Colors.black),
-              subtitle: Text("Start building your cart",
-                  style: GoogleFonts.poppins(fontSize: 14)),
-              leading: Image.asset(
-                "assets/bag.png",
-                height: 35,
-              ),
-              title: Text(
-                "Order item from this store",
-                style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w600, fontSize: 16.4),
+            Padding(
+              padding: const EdgeInsets.only(left: 13.0, right: 13),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: ListTile(
+                  contentPadding:
+                      EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(120)),
+                  tileColor: Color.fromRGBO(37, 155, 226, 1),
+                  isThreeLine: true,
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Start building your cart",
+                          style: GoogleFonts.poppins(
+                              color: Colors.white, fontSize: 14)),
+                      Text("+50 xp",
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            color: Colors.white,
+                          )),
+                    ],
+                  ),
+                  trailing: Container(
+                    color: Color.fromRGBO(37, 155, 226, 1),
+                    child: ClipRRect(
+                      child: Image.asset(
+                        "assets/bag.png",
+                        height: 35,
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    "Order item from this store",
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.4),
+                  ),
+                ),
               ),
             ),
             new Divider(

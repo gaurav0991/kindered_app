@@ -87,9 +87,8 @@ class _LoginPageState extends State<LoginPage> {
               ? CircularProgressIndicator()
               : RaisedButton(
                   onPressed: () {
-                    val.getOtp();
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (_) => OtpScreen()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => OtpScreen()));
                   },
                   padding: EdgeInsets.only(
                       top: 10,

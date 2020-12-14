@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 import 'package:kinderedecommerce/Gold_page.dart';
 import 'package:kinderedecommerce/HomePage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,8 +12,14 @@ import 'package:kinderedecommerce/providers/exploreprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/avd.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+import 'db/DB.dart';
+
+void main() async {
+  await Hive.initFlutter();
+  DB.box = await Hive.openBox(DB.boxName);
+
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<loginProvider>(
       create: (_) => loginProvider(),

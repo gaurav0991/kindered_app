@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kinderedecommerce/ProfilePageSignup.dart';
 
 class OtpScreen extends StatefulWidget {
   @override
@@ -11,8 +13,8 @@ class _OtpScreenState extends State<OtpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset(
-          "assets/Untitled-1-19.png",
+        leading: SvgPicture.asset(
+          "assets/Untitled-1-19.svg",
           height: 100,
           width: 120,
           fit: BoxFit.contain,
@@ -45,7 +47,10 @@ class _OtpScreenState extends State<OtpScreen> {
             Spacer(),
             Center(
               child: RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => ProfilePageSignup()));
+                },
                 padding: EdgeInsets.only(
                     top: 10,
                     bottom: 10,

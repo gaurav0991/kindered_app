@@ -92,8 +92,8 @@ class _BrandState extends State<Brand> {
                 height: MediaQuery.of(context).size.height * 0.24,
                 child: Stack(
                   children: [
-                    Image.asset(
-                      widget.brand["cover_image_url"],
+                    Image.network(
+                      "https://media.istockphoto.com/photos/sport-shoes-on-isolated-white-background-picture-id956501428?k=6&m=956501428&s=612x612&w=0&h=cBcBHYySQGpV5kHPbcXUnpXrgqXrNs0s7cahHBCDsbA=",
                       height: MediaQuery.of(context).size.height * 0.20,
                       width: MediaQuery.of(context).size.width,
                       fit: BoxFit.fill,
@@ -110,7 +110,7 @@ class _BrandState extends State<Brand> {
                             border: Border.all(color: Colors.red),
                             borderRadius: BorderRadius.circular(100),
                             image: DecorationImage(
-                              scale: 1,
+                              scale: 01,
                               image: AssetImage("assets/balance.png"),
                               fit: BoxFit.contain,
                             )),
