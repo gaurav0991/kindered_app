@@ -248,46 +248,7 @@ class _BrandPageState extends State<BrandPage> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 13.0, right: 13),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: ListTile(
-                  contentPadding:
-                      EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(120)),
-                  tileColor: Color.fromRGBO(37, 155, 226, 1),
-                  isThreeLine: true,
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Start building your cart",
-                          style: GoogleFonts.poppins(
-                              color: Colors.white, fontSize: 14)),
-                      Text("+50 xp",
-                          style: GoogleFonts.poppins(
-                            fontSize: 14,
-                            color: Colors.white,
-                          )),
-                    ],
-                  ),
-                  trailing: Container(
-                    color: Color.fromRGBO(37, 155, 226, 1),
-                    child: ClipRRect(
-                      child: Image.asset(
-                        "assets/bag.png",
-                        height: 35,
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    "Order item from this store",
-                    style: GoogleFonts.poppins(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.4),
-                  ),
-                ),
-              ),
+              child: SvgPicture.asset("assets/order.svg")
             ),
             new Divider(
               color: Colors.black45,

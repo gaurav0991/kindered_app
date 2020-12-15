@@ -5,6 +5,7 @@ import 'package:kinderedecommerce/Gold_page.dart';
 import 'package:kinderedecommerce/HomePage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kinderedecommerce/ProfilePage.dart';
+import 'package:kinderedecommerce/SplashScreen.dart';
 import 'package:kinderedecommerce/Store.dart';
 import 'package:kinderedecommerce/explore_screen.dart';
 import 'package:kinderedecommerce/providers/LoginProvider.dart';
@@ -27,7 +28,7 @@ void main() async {
     ChangeNotifierProvider<exploreProvider>(
       create: (_) => exploreProvider(),
     )
-  ], child: MyApp()));
+  ], child: MaterialApp(home: SplashScreen())));
 }
 
 class MyApp extends StatefulWidget {

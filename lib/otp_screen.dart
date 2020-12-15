@@ -2,15 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kinderedecommerce/ProfilePageSignup.dart';
+import 'package:kinderedecommerce/providers/LoginProvider.dart';
+import 'package:provider/provider.dart';
 
 class OtpScreen extends StatefulWidget {
+  final phoneNumber;
+  OtpScreen({this.phoneNumber});
   @override
   _OtpScreenState createState() => _OtpScreenState();
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  TextEditingController t1 = new TextEditingController();
+  TextEditingController t2 = new TextEditingController();
+  TextEditingController t3 = new TextEditingController();
+  TextEditingController t4 = new TextEditingController();
+  TextEditingController t5 = new TextEditingController();
+  TextEditingController t6 = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final val = Provider.of<loginProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: SvgPicture.asset(
@@ -27,7 +40,7 @@ class _OtpScreenState extends State<OtpScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("   Otp sent to +9185886367",
+            Text("   Otp sent to +91" + widget.phoneNumber,
                 style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500, fontSize: 16)),
             SizedBox(
@@ -48,6 +61,8 @@ class _OtpScreenState extends State<OtpScreen> {
             Center(
               child: RaisedButton(
                 onPressed: () {
+                  val.verifyOtp("91" + widget.phoneNumber,
+                      t1.text + t2.text + t3.text + t4.text);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (_) => ProfilePageSignup()));
                 },
@@ -77,23 +92,22 @@ class _OtpScreenState extends State<OtpScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        _box(),
-        _box(),
-        _box(),
-        _box(),
-        _box(),
-        _box(),
+        _box(t1),
+        _box(t2),
+        _box(t3),
+        _box(t4),
       ],
     );
   }
 
-  Widget _box() {
+  Widget _box(t) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5, horizontal: 3),
       alignment: Alignment.center,
       height: 50,
       width: 50,
       child: TextField(
+        controller: t,
         keyboardType: TextInputType.number,
         maxLength: 1,
         decoration: InputDecoration(border: InputBorder.none, counterText: ''),

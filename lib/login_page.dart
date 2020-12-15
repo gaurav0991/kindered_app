@@ -14,6 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController t1 = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     final val = Provider.of<loginProvider>(context);
@@ -67,6 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Expanded(
                     child: TextField(
+                      controller: t1,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -82,13 +84,25 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
+          val.successfull == false
+              ? Text(
+                  "Error in the number",
+                  style: GoogleFonts.poppins(color: Colors.red),
+                )
+              : Text(""),
           Spacer(),
           val.getLoading() == true
               ? CircularProgressIndicator()
               : RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => OtpScreen()));
+                  onPressed: () async {
+                    await val.getOtp(t1.text);
+                    if (val.successfull == false) {
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => OtpScreen(phoneNumber: t1.text)));
+                    }
                   },
                   padding: EdgeInsets.only(
                       top: 10,
