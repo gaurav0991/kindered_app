@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -247,9 +248,16 @@ class _BrandPageState extends State<BrandPage> {
                   }).toList()),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 13.0, right: 13),
-              child: SvgPicture.asset("assets/order.svg")
-            ),
+                padding: const EdgeInsets.only(left: 13.0, right: 13),
+                child: Stack(children:[
+                  SvgPicture.asset("assets/order.svg"),
+                  
+                  Positioned(left:10,top:20,child:Text("Order Item from this Store",style:GoogleFonts.poppins(color:Colors.white,fontSize:16))),
+                  Positioned(left:10,top:40,child:Text("Start building your cart",style:GoogleFonts.poppins(color:Colors.white,fontSize:14))),
+                  Positioned(left:10,top:60,child:Text("+50xp",style:GoogleFonts.poppins(color:Colors.white,fontSize:14))),
+
+                  
+                  ])),
             new Divider(
               color: Colors.black45,
             ),
